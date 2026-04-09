@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mirana Ronaldine — Assistante Médicale à Distance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F7F4EF;--navy:#0D2340;--teal:#1A6E6E;--teal-light:#2A9B9B;--teal-pale:#E8F4F4;--sage:#7BA39A;--sage-pale:#EDF3F2;--gold:#B8945A;--text:#1C2B3A;--text-mid:#4A6070;--text-light:#7A9AB0;--border:#D8E6E4;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 4rem;background:rgba(247,244,239,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--navy);}
+.nav-logo span{color:var(--teal);}
+.nav-links{display:flex;gap:2.5rem;align-items:center;}
+.nav-links a{font-size:.85rem;color:var(--text-mid);text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:var(--teal);}
+.nav-cta{background:var(--teal)!important;color:#fff!important;padding:.55rem 1.5rem;border-radius:3rem;font-weight:500!important;}
+
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:linear-gradient(135deg,var(--cream) 55%,var(--teal-pale) 100%);}
+.hero-circle{position:absolute;right:-8rem;top:50%;transform:translateY(-50%);width:55vw;height:55vw;max-width:700px;max-height:700px;border-radius:50%;background:radial-gradient(circle,rgba(26,110,110,0.08) 0%,transparent 100%);z-index:0;}
+.hero-ring{position:absolute;right:-4rem;top:50%;transform:translateY(-50%);width:48vw;height:48vw;max-width:620px;max-height:620px;border-radius:50%;border:1px solid rgba(26,110,110,0.15);z-index:0;}
+.hero-content{position:relative;z-index:1;max-width:580px;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--teal-pale);border:1px solid rgba(26,110,110,0.2);color:var(--teal);border-radius:3rem;padding:.35rem 1rem;font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1.8rem;animation:fadeUp .8s ease both;}
+.hero-badge::before{content:'●';font-size:.5rem;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.2rem);font-weight:300;line-height:1.1;color:var(--navy);animation:fadeUp .8s .1s ease both;}
+h1 em{font-style:italic;color:var(--teal);}
+h1 strong{font-weight:600;}
+.hero-sub{margin-top:1.2rem;font-size:1.05rem;color:var(--text-mid);line-height:1.7;max-width:460px;animation:fadeUp .8s .2s ease both;}
+.hero-pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem;animation:fadeUp .8s .3s ease both;}
+.pill{display:flex;align-items:center;gap:.4rem;background:#fff;border:1px solid var(--border);color:var(--text-mid);border-radius:3rem;padding:.4rem 1rem;font-size:.82rem;}
+.pill::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--sage);}
+.hero-actions{display:flex;align-items:center;gap:1.2rem;margin-top:2.5rem;animation:fadeUp .8s .4s ease both;}
+.btn-primary{display:inline-flex;align-items:center;gap:.6rem;background:var(--teal);color:#fff;padding:1rem 2rem;border-radius:3rem;font-size:.9rem;font-weight:500;text-decoration:none;transition:all .25s;box-shadow:0 8px 24px rgba(26,110,110,0.25);}
+.btn-primary:hover{background:var(--teal-light);transform:translateY(-2px);}
+.btn-ghost{color:var(--text-mid);font-size:.88rem;text-decoration:none;display:flex;align-items:center;gap:.4rem;border-bottom:1px solid transparent;transition:all .2s;}
+.btn-ghost:hover{color:var(--teal);border-color:var(--teal);}
+.hero-visual{position:relative;z-index:1;display:flex;justify-content:center;}
+.hero-card{background:#fff;border-radius:1.5rem;padding:2rem;width:320px;box-shadow:0 24px 60px rgba(13,35,64,0.1);animation:floatCard 6s ease-in-out infinite;}
+@keyframes floatCard{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.card-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.5rem;}
+.card-avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--teal) 0%,var(--sage) 100%);display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+.card-info strong{display:block;font-size:.9rem;color:var(--navy);}
+.card-info span{font-size:.78rem;color:var(--text-light);}
+.card-status{display:flex;align-items:center;gap:.4rem;font-size:.75rem;color:#2E9D5C;background:#EDFAF3;border-radius:3rem;padding:.25rem .75rem;width:fit-content;margin-left:auto;}
+.card-status::before{content:'●';font-size:.45rem;}
+.card-items{display:flex;flex-direction:column;gap:.7rem;}
+.card-item{display:flex;align-items:center;justify-content:space-between;background:var(--sage-pale);border-radius:.8rem;padding:.7rem 1rem;font-size:.82rem;}
+.card-item-left{display:flex;align-items:center;gap:.6rem;color:var(--text);}
+.card-item-icon{width:28px;height:28px;border-radius:.5rem;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;font-size:.85rem;}
+.card-item-count{font-size:.75rem;font-weight:500;color:var(--teal);background:var(--teal-pale);border-radius:3rem;padding:.15rem .6rem;}
+.card-metric{margin-top:1.2rem;display:flex;gap:.7rem;}
+.metric{flex:1;background:var(--teal);border-radius:.8rem;padding:.8rem;text-align:center;color:#fff;}
+.metric-val{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;display:block;}
+.metric-label{font-size:.7rem;opacity:.8;}
+.metric.light{background:var(--sage-pale);}
+.metric.light .metric-val,.metric.light .metric-label{color:var(--navy);}
+
+section{padding:6rem 4rem;}
+.section-label{font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.8rem;}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:300;line-height:1.2;color:var(--navy);}
+h2 em{font-style:italic;}
+.section-sub{color:var(--text-mid);line-height:1.7;margin-top:.8rem;max-width:480px;}
+
+#cibles{background:var(--navy);}
+#cibles h2{color:#fff;}
+#cibles .section-label{color:var(--teal-light);}
+.cibles-intro{color:rgba(255,255,255,.65);line-height:1.7;max-width:560px;margin:.8rem auto 0;}
+.cibles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem;}
+.cible-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:1.2rem;padding:1.4rem 1.2rem;text-align:center;transition:all .3s;}
+.cible-card:hover{background:rgba(26,110,110,.2);border-color:rgba(42,155,155,.4);transform:translateY(-4px);}
+.cible-icon{font-size:2rem;margin-bottom:.7rem;display:block;}
+.cible-card h4{font-size:.88rem;font-weight:500;color:#fff;margin-bottom:.3rem;}
+.cible-card p{font-size:.76rem;color:rgba(255,255,255,.45);line-height:1.5;}
+
+#probleme{background:var(--navy);color:#fff;}
+#probleme h2{color:#fff;}
+#probleme .section-label{color:var(--teal-light);}
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:center;}
+.problem-cards{display:flex;flex-direction:column;gap:1rem;}
+.problem-card{display:flex;align-items:flex-start;gap:1rem;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:1.2rem 1.4rem;transition:all .3s;}
+.problem-card:hover{background:rgba(26,110,110,0.15);transform:translateX(6px);}
+.problem-icon{width:40px;height:40px;min-width:40px;border-radius:.7rem;background:rgba(26,110,110,0.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+.problem-card h4{font-size:.9rem;font-weight:500;color:#fff;margin-bottom:.25rem;}
+.problem-card p{font-size:.82rem;color:rgba(255,255,255,.5);line-height:1.5;}
+.problem-result{margin-top:2rem;background:rgba(220,60,60,0.1);border:1px solid rgba(220,60,60,0.2);border-radius:1rem;padding:1.2rem 1.5rem;font-size:.88rem;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:.8rem;}
+.problem-result::before{content:'\26A0';font-size:1.2rem;}
+.problem-visual{display:flex;flex-direction:column;gap:1.5rem;justify-content:center;align-items:center;}
+.stress-meter{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:1.2rem;padding:1.5rem;width:100%;max-width:280px;}
+.stress-meter label{font-size:.75rem;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase;}
+.meter-bar{height:8px;background:rgba(255,255,255,.1);border-radius:4px;margin:.8rem 0;overflow:hidden;}
+.meter-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,#E05555,#FF6B6B);animation:meterPulse 2.5s ease-in-out infinite;}
+@keyframes meterPulse{0%,100%{width:80%}50%{width:95%}}
+.meter-val{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:#FF6B6B;}
+.meter-unit{font-size:.75rem;color:rgba(255,255,255,.4);}
+
+#solution{background:var(--cream);}
+.solution-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:3rem;align-items:center;}
+.check-list{display:flex;flex-direction:column;gap:1.2rem;margin-top:2rem;}
+.check-item{display:flex;align-items:center;gap:1rem;}
+.check-icon{width:36px;height:36px;min-width:36px;border-radius:50%;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;font-size:.85rem;}
+.check-text strong{display:block;font-size:.9rem;color:var(--navy);}
+.check-text span{font-size:.82rem;color:var(--text-light);}
+.solution-visual{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.sol-card{background:#fff;border:1px solid var(--border);border-radius:1.2rem;padding:1.5rem;text-align:center;transition:all .3s;}
+.sol-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.08);}
+.sol-card:first-child{grid-column:span 2;background:var(--teal);border-color:var(--teal);}
+.sol-icon{font-size:1.8rem;margin-bottom:.6rem;}
+.sol-val{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--navy);}
+.sol-label{font-size:.78rem;color:var(--text-light);margin-top:.2rem;}
+.sol-card:first-child .sol-val,.sol-card:first-child .sol-label{color:#fff;}
+.sol-card:first-child .sol-label{opacity:.75;}
+
+#services{background:var(--sage-pale);}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:3rem;}
+.service-card{background:#fff;border:1px solid var(--border);border-radius:1.2rem;padding:1.8rem;transition:all .3s;position:relative;overflow:hidden;}
+.service-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--teal),var(--sage));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.08);}
+.service-card:hover::after{transform:scaleX(1);}
+.service-icon{width:48px;height:48px;border-radius:.9rem;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1rem;}
+.service-card h3{font-size:1rem;font-weight:500;color:var(--navy);margin-bottom:.4rem;}
+.service-card p{font-size:.82rem;color:var(--text-light);line-height:1.6;}
+.service-tag{display:inline-block;margin-top:.8rem;font-size:.72rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);background:var(--teal-pale);border-radius:3rem;padding:.2rem .7rem;}
+
+#apropos{background:#fff;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:3rem;}
+.about-portrait{position:relative;display:flex;justify-content:center;}
+.portrait-bg{width:280px;height:340px;border-radius:30% 70% 70% 30% / 30% 30% 70% 70%;background:linear-gradient(145deg,var(--teal-pale),var(--sage-pale));display:flex;align-items:center;justify-content:center;font-size:5rem;position:relative;}
+.portrait-badge{position:absolute;bottom:-1rem;right:0;background:var(--navy);color:#fff;border-radius:1rem;padding:.8rem 1.2rem;text-align:center;}
+.portrait-badge strong{display:block;font-size:1.3rem;font-family:'Cormorant Garamond',serif;}
+.portrait-badge span{font-size:.72rem;opacity:.7;}
+.about-qualities{display:flex;flex-direction:column;gap:.9rem;margin-top:1.5rem;}
+.quality{display:flex;align-items:center;gap:.8rem;padding:.7rem 1rem;border-radius:.8rem;background:var(--sage-pale);font-size:.88rem;color:var(--text);}
+.quality-dot{width:8px;height:8px;min-width:8px;border-radius:50%;background:var(--teal);}
+.personal-story{margin-top:2rem;display:flex;flex-direction:column;gap:.9rem;}
+.story-line{display:flex;align-items:flex-start;gap:.9rem;padding:1rem 1.2rem;border-radius:.9rem;background:var(--cream);border-left:3px solid var(--gold);}
+.story-emoji{font-size:1.2rem;line-height:1.4;}
+.story-text{font-size:.88rem;color:var(--text-mid);line-height:1.6;font-style:italic;}
+.story-text strong{color:var(--navy);font-style:normal;}
+
+#confiance{background:var(--cream);}
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+.trust-card{background:#fff;border:1px solid var(--border);border-radius:1.2rem;padding:1.8rem;display:flex;flex-direction:column;gap:.6rem;}
+.trust-icon{width:40px;height:40px;border-radius:.7rem;background:var(--teal-pale);display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.trust-card h4{font-size:.95rem;font-weight:500;color:var(--navy);}
+.trust-card p{font-size:.82rem;color:var(--text-light);line-height:1.6;}
+
+#temoignage{background:var(--teal);color:#fff;text-align:center;}
+#temoignage h2{color:#fff;}
+.testimonial-quote{max-width:600px;margin:2rem auto 0;font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,2.5vw,1.9rem);font-style:italic;font-weight:300;line-height:1.5;color:rgba(255,255,255,.9);}
+.testimonial-author{margin-top:1.5rem;font-size:.85rem;color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;gap:.6rem;}
+.testimonial-author::before,.testimonial-author::after{content:'';display:block;width:40px;height:1px;background:rgba(255,255,255,.3);}
+.stars{color:#FFD166;font-size:1rem;margin-top:1.2rem;}
+
+#cta{background:var(--navy);color:#fff;text-align:center;}
+#cta h2{color:#fff;text-align:center;}
+#cta .section-sub{color:rgba(255,255,255,.6);margin:.8rem auto 0;}
+.cta-actions{display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap;margin-top:2.5rem;}
+.btn-white{display:inline-flex;align-items:center;gap:.6rem;background:#fff;color:var(--navy);padding:1rem 2rem;border-radius:3rem;font-size:.9rem;font-weight:500;text-decoration:none;transition:all .25s;box-shadow:0 8px 24px rgba(0,0,0,.2);}
+.btn-white:hover{background:var(--cream);transform:translateY(-2px);}
+.btn-outline-white{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(255,255,255,.3);color:#fff;padding:1rem 2rem;border-radius:3rem;font-size:.9rem;font-weight:500;text-decoration:none;transition:all .25s;}
+.btn-outline-white:hover{background:rgba(255,255,255,.1);}
+.cta-contacts{display:flex;justify-content:center;gap:3rem;margin-top:2.5rem;flex-wrap:wrap;}
+.cta-contact{font-size:.88rem;color:rgba(255,255,255,.6);}
+.cta-contact strong{color:#fff;display:block;margin-bottom:.2rem;}
+.cta-contact a{color:rgba(255,255,255,.6);text-decoration:none;}
+.cta-contact a:hover{color:#fff;text-decoration:underline;}
+
+#bonus{background:linear-gradient(135deg,var(--teal-pale) 0%,var(--sage-pale) 100%);text-align:center;}
+.bonus-box{max-width:560px;margin:2rem auto 0;background:#fff;border:1px solid var(--border);border-radius:1.5rem;padding:2.5rem 2rem;box-shadow:0 16px 48px rgba(0,0,0,.07);}
+.bonus-icon{font-size:2.5rem;margin-bottom:1rem;}
+.bonus-box h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--navy);margin-bottom:.6rem;}
+.bonus-box p{font-size:.9rem;color:var(--text-mid);line-height:1.7;margin-bottom:1.5rem;}
+
+footer{background:var(--navy);color:rgba(255,255,255,.45);text-align:center;padding:2rem;font-size:.8rem;border-top:1px solid rgba(255,255,255,.06);}
+footer strong{color:rgba(255,255,255,.8);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  #hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem;}
+  .hero-visual{display:none;}
+  section{padding:4rem 1.5rem;}
+  .problem-grid,.solution-grid,.about-grid{grid-template-columns:1fr;gap:2rem;}
+  .services-grid,.trust-grid{grid-template-columns:1fr;}
+  .cibles-grid{grid-template-columns:repeat(2,1fr);}
+  .problem-visual,.about-portrait{display:none;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Mirana <span>Assistante Médicale</span></div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#tarifs">Tarifs</a>
+    <a href="#apropos">À propos</a>
+    <a href="#confiance">Confiance</a>
+    <a href="#cta" class="nav-cta">Réserver un appel</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-content">
+    <div class="hero-badge">RAZANABOLOLONA Mirana Ronaldine</div>
+    <h1>Assistante Médicale<br><em>à Distance</em> —<br><strong>Spécialisée pour tous<br>les soignants débordés</strong></h1>
+    <p class="hero-sub">Médecin, infirmière, kinésithérapeute, dentiste, sage-femme… <strong>Infirmière devenue assistante médicale virtuelle</strong>, je libère votre temps pour que chaque patient reçoive le meilleur de vous.</p>
+    <div class="hero-pills">
+      <span class="pill">Organisation</span>
+      <span class="pill">Efficacité</span>
+      <span class="pill">Sérénité</span>
+      <span class="pill">Confidentialité</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">📅 Réserver un appel gratuit →</a>
+      <a href="#services" class="btn-ghost">Découvrir mes services →</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card">
+      <div class="card-header">
+        <div class="card-avatar">🏥</div>
+        <div class="card-info"><strong>Tableau de bord</strong><span>Aujourd'hui</span></div>
+        <div class="card-status">Actif</div>
+      </div>
+      <div class="card-items">
+        <div class="card-item"><div class="card-item-left"><div class="card-item-icon">📅</div> Rendez-vous</div><div class="card-item-count">12 gérés</div></div>
+        <div class="card-item"><div class="card-item-left"><div class="card-item-icon">📧</div> Emails</div><div class="card-item-count">24 traités</div></div>
+        <div class="card-item"><div class="card-item-left"><div class="card-item-icon">📂</div> Dossiers</div><div class="card-item-count">8 mis à jour</div></div>
+      </div>
+      <div class="card-metric">
+        <div class="metric"><span class="metric-val">+5h</span><span class="metric-label">Temps libéré</span></div>
+        <div class="metric light"><span class="metric-val">0</span><span class="metric-label">Emails en retard</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cibles">
+  <div class="reveal" style="text-align:center">
+    <p class="section-label">Professionnels accompagnés</p>
+    <h2>Pour <em>tous</em> les soignants qui manquent de temps</h2>
+    <p class="cibles-intro">Que vous exerciez en libéral, en cabinet de groupe ou en téléconsultation, mon accompagnement s'adapte à votre spécialité et votre rythme.</p>
+  </div>
+  <div class="cibles-grid reveal">
+    <div class="cible-card"><span class="cible-icon">🩺</span><h4>Médecins</h4><p>Généralistes, spécialistes, urgentistes en libéral</p></div>
+    <div class="cible-card"><span class="cible-icon">💉</span><h4>Infirmières libérales</h4><p>IDEL, infirmières de pratique avancée</p></div>
+    <div class="cible-card"><span class="cible-icon">🦷</span><h4>Dentistes</h4><p>Cabinets dentaires et orthodontistes</p></div>
+    <div class="cible-card"><span class="cible-icon">🤲</span><h4>Kinésithérapeutes</h4><p>Kinés, ostéopathes, podologues</p></div>
+    <div class="cible-card"><span class="cible-icon">🧠</span><h4>Psychologues</h4><p>Thérapeutes, psychiatres libéraux</p></div>
+    <div class="cible-card"><span class="cible-icon">👁️</span><h4>Ophtalmologues</h4><p>Ophtalmos, orthoptistes</p></div>
+    <div class="cible-card"><span class="cible-icon">🤱</span><h4>Sages-femmes</h4><p>Sages-femmes libérales, maïeuticiens</p></div>
+    <div class="cible-card"><span class="cible-icon">➕</span><h4>Et bien d'autres…</h4><p>Tout professionnel de santé libéral débordé</p></div>
+  </div>
+</section>
+
+<section id="probleme">
+  <div class="reveal">
+    <p class="section-label">Le problème</p>
+    <h2>Vous manquez de <em>temps ?</em></h2>
+  </div>
+  <div class="problem-grid">
+    <div class="problem-cards reveal">
+      <div class="problem-card"><div class="problem-icon">📞</div><div><h4>Trop d'appels patients</h4><p>Votre ligne sonne sans cesse, difficile de vous concentrer sur les soins</p></div></div>
+      <div class="problem-card"><div class="problem-icon">📧</div><div><h4>Boîte email débordée</h4><p>Des dizaines de messages s'accumulent sans être traités correctement</p></div></div>
+      <div class="problem-card"><div class="problem-icon">📅</div><div><h4>Agenda mal organisé</h4><p>Les rendez-vous se superposent, les créneaux sont mal gérés</p></div></div>
+      <div class="problem-card"><div class="problem-icon">📂</div><div><h4>Gestion administrative chronophage</h4><p>Vous passez des heures sur des tâches à faible valeur ajoutée</p></div></div>
+      <div class="problem-result">Résultat : fatigue, surcharge mentale et moins de qualité pour vos patients</div>
+    </div>
+    <div class="problem-visual reveal">
+      <div class="stress-meter">
+        <label>Niveau de charge mentale</label>
+        <div class="meter-bar"><div class="meter-fill"></div></div>
+        <div class="meter-val">Élevé</div>
+        <div class="meter-unit">Sans assistant(e)</div>
+      </div>
+      <div class="stress-meter">
+        <label>Temps consacré aux patients</label>
+        <div class="meter-bar"><div class="meter-fill" style="background:linear-gradient(90deg,var(--teal),var(--teal-light));width:40%;animation:none"></div></div>
+        <div class="meter-val" style="color:var(--teal-light)">Réduit</div>
+        <div class="meter-unit">Moins de 40% du temps</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="solution">
+  <div class="reveal" style="text-align:center">
+    <p class="section-label">La solution</p>
+    <h2>Une solution <em>simple</em> et <strong>efficace</strong></h2>
+    <p class="section-sub" style="margin:.8rem auto 0">Je prends en charge votre organisation administrative pour vous permettre de vous concentrer sur ce qui compte vraiment.</p>
+  </div>
+  <div class="solution-grid">
+    <div class="reveal">
+      <div class="check-list">
+        <div class="check-item"><div class="check-icon">⏱</div><div class="check-text"><strong>Gagnez du temps chaque jour</strong><span>Libérez-vous de 3 à 5 heures de tâches administratives</span></div></div>
+        <div class="check-item"><div class="check-icon">🧠</div><div class="check-text"><strong>Réduisez votre charge mentale</strong><span>Déléguez en toute confiance à une professionnelle du secteur</span></div></div>
+        <div class="check-item"><div class="check-icon">📋</div><div class="check-text"><strong>Améliorez votre organisation</strong><span>Agenda structuré, emails triés, dossiers à jour</span></div></div>
+        <div class="check-item"><div class="check-icon">❤️</div><div class="check-text"><strong>Offrez une meilleure expérience</strong><span>Vos patients méritent toute votre attention</span></div></div>
+      </div>
+    </div>
+    <div class="solution-visual reveal">
+      <div class="sol-card"><div class="sol-icon">✨</div><div class="sol-val">+5h/jour</div><div class="sol-label">Temps libéré par jour</div></div>
+      <div class="sol-card"><div class="sol-icon">📉</div><div class="sol-val">−80%</div><div class="sol-label">Charge administrative</div></div>
+      <div class="sol-card"><div class="sol-icon">😌</div><div class="sol-val">100%</div><div class="sol-label">Focus patients</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="reveal" style="text-align:center">
+    <p class="section-label">Mes services</p>
+    <h2>Ce que je peux faire <em>pour vous</em></h2>
+    <p class="section-sub" style="margin:.8rem auto 0">Travail à distance, sécurisé et professionnel — adapté à votre spécialité et votre fonctionnement.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card"><div class="service-icon">📅</div><h3>Gestion des rendez-vous</h3><p>Prise en charge complète des plannings, confirmations, rappels et annulations pour toutes les spécialités.</p><span class="service-tag">Agenda</span></div>
+    <div class="service-card"><div class="service-icon">🗂</div><h3>Organisation d'agenda</h3><p>Structuration de votre planning hebdomadaire pour optimiser vos journées de soins.</p><span class="service-tag">Organisation</span></div>
+    <div class="service-card"><div class="service-icon">📧</div><h3>Emails et messages patients</h3><p>Réponse aux sollicitations, tri et priorisation de votre boîte de réception.</p><span class="service-tag">Communication</span></div>
+    <div class="service-card"><div class="service-icon">📁</div><h3>Dossiers et comptes-rendus</h3><p>Mise à jour et organisation des dossiers patients selon vos protocoles et votre logiciel métier.</p><span class="service-tag">Administratif</span></div>
+    <div class="service-card"><div class="service-icon">📊</div><h3>Suivi administratif quotidien</h3><p>Gestion des tâches récurrentes, relances, facturation de base et reporting régulier.</p><span class="service-tag">Suivi</span></div>
+    <div class="service-card" style="background:var(--teal);border-color:var(--teal)"><div class="service-icon" style="background:rgba(255,255,255,.15)">🔒</div><h3 style="color:#fff">Confidentialité garantie</h3><p style="color:rgba(255,255,255,.75)">Respect strict du secret médical et des données patients — RGPD inclus.</p><span class="service-tag" style="background:rgba(255,255,255,.15);color:#fff">RGPD</span></div>
+  </div>
+</section>
+
+
+<section id="agendas" style="background:#fff;">
+  <div class="reveal" style="text-align:center">
+    <p class="section-label">Outils maîtrisés</p>
+    <h2>Je travaille avec vos <em>logiciels médicaux</em></h2>
+    <p class="section-sub" style="margin:.8rem auto 0">Pas besoin de vous adapter — je m'intègre directement dans vos outils existants.</p>
+  </div>
+  <div class="reveal" style="margin-top:2.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;max-width:900px;margin-left:auto;margin-right:auto;">
+    <div style="background:var(--teal-pale);border:1px solid var(--border);border-radius:1.2rem;padding:1.5rem;text-align:center;transition:all .3s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+      <div style="font-size:2rem;margin-bottom:.7rem;">📅</div>
+      <h4 style="font-size:.95rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;">Doctolib</h4>
+      <p style="font-size:.8rem;color:var(--text-light);">Gestion des rendez-vous en ligne</p>
+    </div>
+    <div style="background:var(--teal-pale);border:1px solid var(--border);border-radius:1.2rem;padding:1.5rem;text-align:center;transition:all .3s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+      <div style="font-size:2rem;margin-bottom:.7rem;">🗓️</div>
+      <h4 style="font-size:.95rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;">Maiia</h4>
+      <p style="font-size:.8rem;color:var(--text-light);">Agenda et téléconsultation</p>
+    </div>
+    <div style="background:var(--teal-pale);border:1px solid var(--border);border-radius:1.2rem;padding:1.5rem;text-align:center;transition:all .3s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+      <div style="font-size:2rem;margin-bottom:.7rem;">📋</div>
+      <h4 style="font-size:.95rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;">Agenda 5</h4>
+      <p style="font-size:.8rem;color:var(--text-light);">Logiciel de gestion médicale</p>
+    </div>
+    <div style="background:var(--teal-pale);border:1px solid var(--border);border-radius:1.2rem;padding:1.5rem;text-align:center;transition:all .3s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'">
+      <div style="font-size:2rem;margin-bottom:.7rem;">💻</div>
+      <h4 style="font-size:.95rem;font-weight:600;color:var(--navy);margin-bottom:.3rem;">Calibri</h4>
+      <p style="font-size:.8rem;color:var(--text-light);">Gestion infirmières libérales</p>
+    </div>
+    <div style="background:var(--navy);border:1px solid var(--navy);border-radius:1.2rem;padding:1.5rem;text-align:center;grid-column:span 2;">
+      <div style="font-size:2rem;margin-bottom:.7rem;">➕</div>
+      <h4 style="font-size:.95rem;font-weight:600;color:#fff;margin-bottom:.3rem;">Et bien d'autres…</h4>
+      <p style="font-size:.8rem;color:rgba(255,255,255,.6);">Je m'adapte à votre logiciel existant</p>
+    </div>
+  </div>
+</section>
+
+<section id="apropos">
+  <div class="about-grid">
+    <div class="about-portrait reveal">
+      <div style="position:relative;width:280px">
+        <div class="portrait-bg">👩‍⚕️</div>
+        <div class="portrait-badge"><strong>Mirana R.</strong><span>Infirmière · Assistante médicale</span></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <p class="section-label">À propos</p>
+      <h2>Une professionnelle de la santé <em>à vos côtés</em></h2>
+      <p class="section-sub" style="margin-top:1rem">Je suis <strong>Mirana Ronaldine RAZANABOLOLONA</strong>, infirmière devenue assistante médicale virtuelle. Je libère votre temps pour que chaque patient reçoive le meilleur de vous — parce que je connais votre réalité de l'intérieur.</p>
+      <div class="personal-story">
+        <div class="story-line">
+          <span class="story-emoji">🌍</span>
+          <p class="story-text">Originaire de Madagascar, j'ai grandi entourée de soignants passionnés. <strong>C'est cette vocation familiale qui m'a conduite vers les soins infirmiers</strong>, avec l'envie profonde de servir et d'être utile aux autres, chaque jour.</p>
+        </div>
+        <div class="story-line">
+          <span class="story-emoji">💛</span>
+          <p class="story-text">Sur le terrain, j'ai vu de près les nuits sans fin, les tableurs interminables, les soignants épuisés. <strong>J'ai vécu de l'intérieur ce que c'est d'être débordé</strong> — et j'ai compris que la charge administrative volait un temps précieux aux patients.</p>
+        </div>
+        <div class="story-line">
+          <span class="story-emoji">🚀</span>
+          <p class="story-text">C'est cette expérience qui m'a donné envie de changer les choses : <strong>devenir l'assistante que j'aurais voulu avoir à mes côtés</strong>, pour que les soignants puissent enfin souffler et se recentrer sur leur cœur de métier.</p>
+        </div>
+      </div>
+      <div class="about-qualities" style="margin-top:1.5rem">
+        <div class="quality"><div class="quality-dot"></div>Sérieuse, organisée et rigoureuse dans chaque mission</div>
+        <div class="quality"><div class="quality-dot"></div>À l'écoute des patients et respectueuse de leur parcours</div>
+        <div class="quality"><div class="quality-dot"></div>Discrète, avec un sens fort de la confidentialité médicale</div>
+        <div class="quality"><div class="quality-dot"></div>Adaptable à votre façon de travailler et vos outils</div>
+      </div>
+      <div style="margin-top:2rem;padding:1.2rem 1.5rem;background:var(--teal-pale);border-radius:1rem;border-left:3px solid var(--teal)">
+        <p style="font-size:.88rem;color:var(--text-mid);font-style:italic">💥 <strong style="color:var(--navy)">Mon avantage :</strong> mon background infirmière me donne une compréhension native de votre univers médical — quelle que soit votre spécialité.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="confiance">
+  <div class="reveal" style="text-align:center">
+    <p class="section-label">Pourquoi me choisir</p>
+    <h2>Une collaboration <em>de confiance</em></h2>
+  </div>
+  <div class="trust-grid reveal">
+    <div class="trust-card"><div class="trust-icon">🏥</div><h4>Expérience médicale</h4><p>Formation infirmière et compréhension des enjeux du secteur de la santé, toutes spécialités.</p></div>
+    <div class="trust-card"><div class="trust-icon">💬</div><h4>Communication claire</h4><p>Échanges structurés, comptes-rendus réguliers, disponibilité réactive.</p></div>
+    <div class="trust-card"><div class="trust-icon">🔒</div><h4>Confidentialité totale</h4><p>Respect strict du secret médical et des données sensibles de vos patients.</p></div>
+    <div class="trust-card"><div class="trust-icon">⚡</div><h4>Fiabilité et rigueur</h4><p>Travail structuré, délais respectés, zéro approximation sur les tâches critiques.</p></div>
+    <div class="trust-card"><div class="trust-icon">📋</div><h4>Organisation efficace</h4><p>Processus clairs et outils adaptés à votre cabinet et vos habitudes de travail.</p></div>
+    <div class="trust-card"><div class="trust-icon">🌐</div><h4>Travail 100% à distance</h4><p>Collaboration flexible et adaptée à vos contraintes horaires, partout en France.</p></div>
+  </div>
+</section>
+
+
+<section id="tarifs" style="background:var(--sage-pale);">
+  <div class="reveal" style="text-align:center">
+    <p class="section-label">Tarifs</p>
+    <h2>Des offres <em>claires et transparentes</em></h2>
+    <p class="section-sub" style="margin:.8rem auto 0">Choisissez la formule adaptée à vos besoins — transparente et adaptée à votre cabinet.</p>
+  </div>
+  <div class="reveal" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;max-width:1000px;margin-left:auto;margin-right:auto;">
+
+    <!-- Starter -->
+    <div style="background:#fff;border:1px solid var(--border);border-radius:1.5rem;padding:2rem;text-align:center;transition:all .3s;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 40px rgba(0,0,0,.1)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+      <div style="font-size:2rem;margin-bottom:.8rem;">🌱</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--navy);margin-bottom:.4rem;">Starter</h3>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:600;color:var(--teal);line-height:1;">150€</div>
+      <div style="font-size:.78rem;color:var(--text-light);margin-bottom:1.5rem;">/mois</div>
+      <div style="font-size:.85rem;color:var(--text-mid);background:var(--teal-pale);border-radius:.8rem;padding:.6rem 1rem;margin-bottom:1.2rem;">⏱ 10h / mois</div>
+      <ul style="list-style:none;text-align:left;display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.8rem;">
+        <li style="font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:.6rem;"><span style="color:var(--teal);font-weight:600;">✓</span> Gestion des emails</li>
+        <li style="font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:.6rem;"><span style="color:var(--teal);font-weight:600;">✓</span> Prise de rendez-vous</li>
+        <li style="font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:.6rem;"><span style="color:var(--teal);font-weight:600;">✓</span> Suivi agenda basique</li>
+        <li style="font-size:.85rem;color:var(--text-light);display:flex;align-items:center;gap:.6rem;"><span style="color:var(--border);">✗</span> Dossiers patients</li>
+        <li style="font-size:.85rem;color:var(--text-light);display:flex;align-items:center;gap:.6rem;"><span style="color:var(--border);">✗</span> Facturation</li>
+      </ul>
+      <a href="mailto:mirana.assistantemedical@gmail.com" style="display:block;background:var(--teal-pale);color:var(--teal);border-radius:3rem;padding:.8rem 1.5rem;text-decoration:none;font-size:.88rem;font-weight:500;transition:all .25s;" onmouseover="this.style.background='var(--teal)';this.style.color='#fff'" onmouseout="this.style.background='var(--teal-pale)';this.style.color='var(--teal)'">Je démarre →</a>
+    </div>
+
+    <!-- Essentiel -->
+    <div style="background:var(--teal);border:1px solid var(--teal);border-radius:1.5rem;padding:2rem;text-align:center;position:relative;transform:scale(1.04);box-shadow:0 24px 60px rgba(26,110,110,0.3);">
+      <div style="position:absolute;top:-1rem;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;border-radius:3rem;padding:.3rem 1.2rem;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;">⭐ Populaire</div>
+      <div style="font-size:2rem;margin-bottom:.8rem;">⭐</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:#fff;margin-bottom:.4rem;">Essentiel</h3>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:600;color:#fff;line-height:1;">300€</div>
+      <div style="font-size:.78rem;color:rgba(255,255,255,.7);margin-bottom:1.5rem;">/mois</div>
+      <div style="font-size:.85rem;color:#fff;background:rgba(255,255,255,.15);border-radius:.8rem;padding:.6rem 1rem;margin-bottom:1.2rem;">⏱ 20h / mois</div>
+      <ul style="list-style:none;text-align:left;display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.8rem;">
+        <li style="font-size:.85rem;color:#fff;display:flex;align-items:center;gap:.6rem;"><span style="color:#FFD166;font-weight:600;">✓</span> Gestion des emails</li>
+        <li style="font-size:.85rem;color:#fff;display:flex;align-items:center;gap:.6rem;"><span style="color:#FFD166;font-weight:600;">✓</span> Prise de rendez-vous</li>
+        <li style="font-size:.85rem;color:#fff;display:flex;align-items:center;gap:.6rem;"><span style="color:#FFD166;font-weight:600;">✓</span> Agenda complet</li>
+        <li style="font-size:.85rem;color:#fff;display:flex;align-items:center;gap:.6rem;"><span style="color:#FFD166;font-weight:600;">✓</span> Dossiers patients</li>
+        <li style="font-size:.85rem;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:.6rem;"><span style="opacity:.4;">✗</span> Facturation</li>
+      </ul>
+      <a href="mailto:mirana.assistantemedical@gmail.com" style="display:block;background:#fff;color:var(--teal);border-radius:3rem;padding:.8rem 1.5rem;text-decoration:none;font-size:.88rem;font-weight:600;transition:all .25s;" onmouseover="this.style.background='var(--cream)'" onmouseout="this.style.background='#fff'">Je choisis cette offre →</a>
+    </div>
+
+    <!-- Premium -->
+    <div style="background:#fff;border:1px solid var(--border);border-radius:1.5rem;padding:2rem;text-align:center;transition:all .3s;" onmouseover="this.style.transform='translateY(-6px)';this.style.boxShadow='0 20px 40px rgba(0,0,0,.1)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+      <div style="font-size:2rem;margin-bottom:.8rem;">💎</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--navy);margin-bottom:.4rem;">Premium</h3>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:600;color:var(--teal);line-height:1;">550€</div>
+      <div style="font-size:.78rem;color:var(--text-light);margin-bottom:1.5rem;">/mois</div>
+      <div style="font-size:.85rem;color:var(--text-mid);background:var(--teal-pale);border-radius:.8rem;padding:.6rem 1rem;margin-bottom:1.2rem;">⏱ 30h / mois — tout inclus</div>
+      <ul style="list-style:none;text-align:left;display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.8rem;">
+        <li style="font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:.6rem;"><span style="color:var(--teal);font-weight:600;">✓</span> Gestion des emails</li>
+        <li style="font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:.6rem;"><span style="color:var(--teal);font-weight:600;">✓</span> Prise de rendez-vous</li>
+        <li style="font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:.6rem;"><span style="color:var(--teal);font-weight:600;">✓</span> Agenda complet</li>
+        <li style="font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:.6rem;"><span style="color:var(--teal);font-weight:600;">✓</span> Dossiers patients</li>
+        <li style="font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:.6rem;"><span style="color:var(--teal);font-weight:600;">✓</span> Facturation & reporting</li>
+      </ul>
+      <a href="mailto:mirana.assistantemedical@gmail.com" style="display:block;background:var(--navy);color:#fff;border-radius:3rem;padding:.8rem 1.5rem;text-decoration:none;font-size:.88rem;font-weight:500;transition:all .25s;" onmouseover="this.style.background='var(--teal)'" onmouseout="this.style.background='var(--navy)'">Je choisis cette offre →</a>
+    </div>
+
+  </div>
+
+  <!-- Offre découverte -->
+  <div class="reveal" style="max-width:640px;margin:2.5rem auto 0;background:linear-gradient(135deg,var(--navy) 0%,#1a3a5c 100%);border-radius:1.5rem;padding:2rem 2.5rem;text-align:center;box-shadow:0 20px 50px rgba(13,35,64,0.2);">
+    <div style="display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:#fff;border-radius:3rem;padding:.3rem 1.2rem;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem;">🎁 Offre de bienvenue</div>
+    <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;margin-bottom:.6rem;">Essayez gratuitement pendant 24h</h4>
+    <p style="font-size:.88rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:.8rem;">Avant de vous engager, testez mon service sans aucun risque.<br>Je travaille pour vous pendant <strong style="color:#fff;">24h complètes — 100% gratuit</strong>, sans carte bancaire, sans engagement.</p>
+    <div style="display:flex;justify-content:center;gap:2rem;margin:1.2rem 0;flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--gold);">24h</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.5);">d'essai gratuit</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--gold);">0€</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.5);">sans engagement</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--gold);">100%</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.5);">sans risque</div>
+      </div>
+    </div>
+    <a href="https://wa.me/261344314434?text=Bonjour%2C%20je%20souhaite%20démarrer%20mon%20essai%20gratuit%2024h" target="_blank" style="display:inline-block;margin-top:.8rem;background:var(--gold);color:#fff;border-radius:3rem;padding:.9rem 2.5rem;text-decoration:none;font-size:.9rem;font-weight:600;box-shadow:0 8px 24px rgba(184,148,90,0.4);transition:all .25s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Je démarre mon essai gratuit →</a>
+  </div>
+
+  <p class="reveal" style="text-align:center;font-size:.8rem;color:var(--text-light);margin-top:1.5rem;">* Tarifs HT — Devis personnalisé disponible sur demande</p>
+</section>
+
+<section id="temoignage">
+  <div class="reveal">
+    <p class="section-label" style="color:rgba(255,255,255,.6)">Témoignage</p>
+    <h2>Ce que disent <em>mes clients</em></h2>
+  </div>
+  <div class="reveal">
+    <p class="testimonial-quote">Une aide précieuse dans mon organisation quotidienne. Très professionnelle et efficace.</p>
+    <div class="stars">★★★★★</div>
+    <p class="testimonial-author">Médecin généraliste — Paris</p>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="reveal">
+    <p class="section-label" style="color:var(--teal-light);text-align:center">Passons à l'action</p>
+    <h2>Prêt(e) à vous libérer du<br><em>stress administratif ?</em></h2>
+    <p class="section-sub" style="text-align:center">Contactez <strong style="color:#fff">Mirana Ronaldine</strong> — Réponse rapide garantie, premier échange sans engagement.</p>
+  </div>
+  <div class="cta-actions reveal" style="margin-top:2.5rem;">
+    <a href="https://wa.me/261344314434?text=Bonjour%2C%20je%20souhaite%20vous%20contacter" target="_blank" class="btn-white" style="background:#25D366;border-color:#25D366;box-shadow:0 8px 24px rgba(37,211,102,0.35);font-size:1rem;padding:1.2rem 3rem;">
+      📱 WhatsApp
+    </a>
+    <a href="/cdn-cgi/l/email-protection#0f62667d6e616e216e7c7c667c7b6e617b6a626a6b666c6e634f68626e6663216c6062" class="btn-outline-white" style="font-size:1rem;padding:1.2rem 3rem;">
+      📩 Email
+    </a>
+  </div>
+  <p class="reveal" style="color:rgba(255,255,255,.4);font-size:.82rem;margin-top:1.5rem;">Réponse garantie sous 24h</p>
+
+</section>
+
+<section id="bonus">
+  <div class="reveal" style="text-align:center">
+    <p class="section-label">Offre spéciale</p>
+    <h2>Commençons par <em>analyser vos besoins</em></h2>
+  </div>
+  <div class="bonus-box reveal">
+    <div class="bonus-icon">🎁</div>
+    <h3>Premier échange offert</h3>
+    <p>Lors de notre premier appel gratuit, j'analyse vos besoins spécifiques et vous propose une solution sur mesure, adaptée à votre cabinet, votre spécialité et vos contraintes.</p>
+    <a href="https://wa.me/261344314434?text=Bonjour%2C%20je%20souhaite%20réserver%20mon%20appel%20gratuit" target="_blank" class="btn-primary" style="justify-content:center">Je réserve mon appel gratuit →</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <strong>Assistante Médicale à Distance</strong> · Spécialisée pour tous les professionnels de santé · Confidentiel et professionnel</p>
+</footer>
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
