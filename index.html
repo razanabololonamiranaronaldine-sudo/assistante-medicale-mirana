@@ -157,8 +157,8 @@ h2 em{font-style:italic;}
 .bonus-box p{font-size:.9rem;color:var(--text-mid);line-height:1.7;margin-bottom:1.5rem;}
 footer{background:var(--navy);color:rgba(255,255,255,.45);text-align:center;padding:2rem;font-size:.8rem;border-top:1px solid rgba(255,255,255,.06);}
 footer strong{color:rgba(255,255,255,.8);}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease;}
+
+.reveal{opacity:1 !important;transform:none !important;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 @media(max-width:900px){
   nav{padding:1rem 1.5rem;}.nav-links{display:none;}
@@ -587,7 +587,7 @@ footer strong{color:rgba(255,255,255,.8);}
   </div>
   <div class="cta-actions reveal">
     <a href="https://wa.me/261344314434?text=Bonjour%20Mirana%2C%20je%20souhaite%20réserver%20mon%20appel%20découverte%20gratuit%20de%2015%20min" target="_blank" class="btn-wa">📱 Réserver sur WhatsApp</a>
-    <a class="btn-email" id="emailBtn">📩 Envoyer un email</a>
+    <a href="mailto:mirana.assistantemedical@gmail.com" class="btn-email">📩 mirana.assistantemedical@gmail.com</a>
   </div>
   <p class="reveal" style="color:rgba(255,255,255,.35);font-size:.8rem;margin-top:1.2rem;">Réponse garantie sous 24h · Confidentialité assurée · Sans engagement</p>
 </section>
@@ -611,18 +611,9 @@ footer strong{color:rgba(255,255,255,.8);}
 
 <script>
 // Email protégé contre le spam
-document.getElementById('emailBtn').addEventListener('click', function() {
-  var u = 'mirana.assistantemedical';
-  var d = 'gmail.com';
-  window.location.href = 'mailto:' + u + '@' + d;
-});
 
-// Animations au scroll
-const reveals = document.querySelectorAll('.reveal');
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-reveals.forEach(el => obs.observe(el));
+
+
 </script>
 </body>
 </html>
